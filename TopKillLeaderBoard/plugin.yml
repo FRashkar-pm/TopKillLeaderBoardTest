@@ -3,3 +3,7 @@ api: 4.0.0
 version: 0.0.1
 author: FRashkar-pm
 main: FRashkar\TopKillLeaderBoard\TopKillLeaderBoard
+
+permissions:
+  settopkill.command:
+    default: op

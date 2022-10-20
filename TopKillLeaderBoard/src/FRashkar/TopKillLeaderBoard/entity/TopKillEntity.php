@@ -2,17 +2,12 @@
 
 namespace FRashkar\TopKillLeaderBoard\entity;
 
-use pocketmine\player\Player;
 use pocketmine\entity\Human;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\nbt\tag\CompoundTag;
-use pocketmine\entity\Ageable;
 use pocketmine\entity\EntitySizeInfo;
-use FRashkar\TopKillLeaderBoard\TopKillLeaderBoard;
 
-class TopKillEntity extends Human implements Ageable {
-    
-	private $baby = false;
+class TopKillEntity extends Human {
 	
 	protected function getInitialSizeInfo() : EntitySizeInfo {
 		return new EntitySizeInfo(0, 0);
@@ -21,15 +16,11 @@ class TopKillEntity extends Human implements Ageable {
 	public function getName() : string {
 		return "TopKillLeaderBoard";
 	}
-    
-    public function isBaby() : bool {
-    	return $this->baby;
-    }
 
 	public function initEntity(CompoundTag $nbt) : void {
 		parent::initEntity($nbt);
-		$this->setNameTagAlwaysVisible(true);
-		$this->setScale(0.0000000000000000000000000000000001);
+		$this->setScale(0.01);
+		$this->setNameTagAlwaysVisible();
 	}
 
 	public function attack(EntityDamageEvent $source) : void {
