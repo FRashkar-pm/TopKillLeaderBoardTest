@@ -8,9 +8,9 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\entity\Ageable;
 use pocketmine\entity\EntitySizeInfo;
-use NoobMCBG\TopMoneyLeaderBoard\TopMoneyLeaderBoard;
+use FRashkar\TopKillLeaderBoard\TopKillLeaderBoard;
 
-class TopMoneyEntity extends Human implements Ageable {
+class TopKillEntity extends Human implements Ageable {
     
 	private $baby = false;
 	
