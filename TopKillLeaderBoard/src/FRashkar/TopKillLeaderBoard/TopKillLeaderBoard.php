@@ -36,30 +36,13 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
         self::$instance = $this;
     }
 	
-    public function registerPlayer(Player $player): void;
-	
-    public function addKillPoints(Player $player, int $points = 1): void;
-	
-    public function getPlayerKillPoints(Player $player): int;
-	
-    public function onPlayerKill(PlayerDeathEvent $event){
-	    $player = $event->getPlayer();
-	    $cause = $player->getLastDamageCause();
-	    if($cause instanceof EntityDamageByEntityEvent){
-			$damager = $cause->getDamager();
-			if($damager instanceof Player){
-				$this->plugin->getTopKillLeaderBoard()->addKillPoints($damager, int);
-			}
-	    }
-    }
-	
     public function spawnLeaderboard(Player $player, int $slot): void {
 		$entity = new TopKillEntity(Location::fromObject($player->getPosition(), $player->getPosition()->getWorld(), $player->getLocation()->getYaw(), $player->getLocation()->getPitch()), new Skin("Standard_Custom", str_repeat("\x00", 8192), "", "geometry.humanoid.custom"));
 		$txt = "";
-        $array = $cause;
+        $array = $kill;
 	$top = 1;
-        foreach($array as $name => $cause) {
-            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{cause}"], ["\n", $name, $name, $name, $top, $cause], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
+        foreach($array as $name => $kill) {
+            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{kill}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
 			$top++;
         }
         $entity->setNameTag("" . $this->getConfig()->getAll()["leaderboard"]["name"] . "\n" . $txt);
