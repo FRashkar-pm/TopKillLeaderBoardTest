@@ -48,7 +48,7 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
 	    if($cause instanceof EntityDamageByEntityEvent){
 			$damager = $cause->getDamager();
 			if($damager instanceof Player){
-				$this->plugin->getTopKillLeaderBoard()->addKillPoints($damager, (int));
+				$this->plugin->getTopKillLeaderBoard()->addKillPoints($damager, int);
 			}
 	    }
     }
