@@ -22,7 +22,7 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
 	public static $instance;
 
     public static function getInstance() : self {
-        return self::$instance;
+        return self::$instance = $currentKills;
     }
     
     public function onEnable() : void {
@@ -45,7 +45,7 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
         $array = $currentKills;
 	$top = 1;
         foreach($array as $name => $currentKills) {
-            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{currentKills}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
+            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{currentKills}"], ["\n", $name, $name, $name, $top, $currentKills], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
 			$top++;
         }
         $entity->setNameTag("" . $this->getConfig()->getAll()["leaderboard"]["name"] . "\n" . $txt);
