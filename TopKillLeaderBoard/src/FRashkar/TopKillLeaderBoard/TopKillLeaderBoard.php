@@ -8,6 +8,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\world\World;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\player\PlayerDeathEvent;
 use pocketmine\entity\EntityFactory;
 use pocketmine\entity\EntityDataHelper;
 use pocketmine\entity\EntityDeathEvent;
