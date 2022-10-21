@@ -3,7 +3,7 @@
 namespace FRashkar\TopKillLeaderBoard\commands;
 
 use pocketmine\player\Player;
-use pocketmine\command\command;
+use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginOwned;
 use FRashkar\TopKillLeaderBoard\TopKillLeaderBoard;
