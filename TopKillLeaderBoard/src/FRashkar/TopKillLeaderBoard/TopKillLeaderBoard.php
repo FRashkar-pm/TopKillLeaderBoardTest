@@ -10,6 +10,8 @@ use pocketmine\world\World;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\entity\EntityFactory;
 use pocketmine\entity\EntityDataHelper;
+use pocketmine\entity\EntityDeathEvent;
+use pocketmine\entity\EntityDamageByEntityEvent;
 use pocketmine\entity\Human;
 use pocketmine\entity\Location;
 use FRashkar\TopKillLeaderBoard\entity\TopKillEntity;
@@ -36,7 +38,8 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
     public function spawnLeaderboard(Player $player, int $slot): void {
 		$entity = new TopKillEntity(Location::fromObject($player->getPosition(), $player->getPosition()->getWorld(), $player->getLocation()->getYaw(), $player->getLocation()->getPitch()), new Skin("Standard_Custom", str_repeat("\x00", 8192), "", "geometry.humanoid.custom"));
 		$txt = "";
-        $array = [];
+        $array = $kill;
+	$top = 1;
         foreach($array as $name => $kill) {
             $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{kill}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
 			$top++;
