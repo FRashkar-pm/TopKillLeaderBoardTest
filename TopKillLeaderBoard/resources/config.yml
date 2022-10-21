@@ -1,5 +1,5 @@
 ---
 leaderboard:
   name: "§l§6>>§e TOP§a Kill§e Leaderboard §6<<"
-  format: "§l§3|§e TOP§d {top} §b {player} §a {money} Kill {line}" #Please put the "{line}" characters at the end so they can be spaced
+  format: "§l§3|§e TOP§d {top} §b {player} §a {kills} Kill {line}" #Please put the "{line}" characters at the end so they can be spaced
 ...

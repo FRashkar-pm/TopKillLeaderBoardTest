@@ -18,7 +18,7 @@ class TopKillLeaderBoardCommands extends Command implements PluginOwned {
 		$this->setPermission("settopkill.command");
 	}
 
-	public function execute(CommandSender $sender, string $label, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
 		if(!$sender->hasPermission("settopkill.command")){
 			$sender->sendMessage("§cYou no permission to use this command !");
 			return true;
@@ -37,6 +37,7 @@ class TopKillLeaderBoardCommands extends Command implements PluginOwned {
 		}else{
 			$sender->sendMessage("§cUsage:§7 /settopmoney <int: slot top>");
 		}
+		return true;
 	}
 
 	public function getOwningPlugin() : TopKillLeaderBoard {
