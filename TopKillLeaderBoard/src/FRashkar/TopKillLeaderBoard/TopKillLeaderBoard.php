@@ -34,14 +34,18 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
         }, ['TopKillLeaderBoard', 'TopKill']);
         self::$instance = $this;
     }
+	
+    public function getCurrentKills(Player $player): int {
+	return $this->currentKills[$player->getName()];
+    }
 
     public function spawnLeaderboard(Player $player, int $slot): void {
 		$entity = new TopKillEntity(Location::fromObject($player->getPosition(), $player->getPosition()->getWorld(), $player->getLocation()->getYaw(), $player->getLocation()->getPitch()), new Skin("Standard_Custom", str_repeat("\x00", 8192), "", "geometry.humanoid.custom"));
 		$txt = "";
-        $array = $kill;
+        $array = $currentKills;
 	$top = 1;
-        foreach($array as $name => $kill) {
-            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{kill}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
+        foreach($array as $name => $currentKills) {
+            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{currentKills}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
 			$top++;
         }
         $entity->setNameTag("" . $this->getConfig()->getAll()["leaderboard"]["name"] . "\n" . $txt);
