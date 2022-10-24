@@ -42,7 +42,7 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
         $array = $kill;
 	$top = 1;
         foreach($array as $name => $kill) {
-            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{kill}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
+            $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{kills}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
 			$top++;
         }
         $entity->setNameTag("" . $this->getConfig()->getAll()["leaderboard"]["name"] . "\n" . $txt);
