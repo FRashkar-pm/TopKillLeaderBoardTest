@@ -36,6 +36,32 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
         self::$instance = $this;
     }
 	
+    public function onEntityDamage(EntityDamageEvent $event): void
+	{
+		$victim = $event->getEntity();
+		if (!$victim instanceof Player) {
+			return;
+		}
+		if ($event instanceof EntityDamageByEntityEvent) {
+			$damager = $event->getDamager();
+			if (!$damager instanceof Player) {
+				return;
+			}
+			if ($event->getFinalDamage() > $victim->getHealth()) {
+				$damagerSession = $this->getSessionFor($damager);
+				$victimSession = $this->getSessionFor($victim);
+				$damagerSession->addKill();
+				$victimSession->addDeath($damager);
+				$kill = $damagerSession->getKill();
+			}
+			return;
+		}
+		if ($event->getFinalDamage() > $victim->getHealth()) {
+			$session = $this->getSessionFor($victim);
+			$session->addDeath();
+		}
+	}
+	
     public function spawnLeaderboard(Player $player, int $slot): void {
 		$entity = new TopKillEntity(Location::fromObject($player->getPosition(), $player->getPosition()->getWorld(), $player->getLocation()->getYaw(), $player->getLocation()->getPitch()), new Skin("Standard_Custom", str_repeat("\x00", 8192), "", "geometry.humanoid.custom"));
 		$txt = "";
