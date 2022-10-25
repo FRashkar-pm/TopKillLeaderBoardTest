@@ -67,7 +67,12 @@ class TopKillLeaderBoard extends PluginBase implements Listener {
     public function spawnLeaderboard(Player $player, int $slot): void {
 		$entity = new TopKillEntity(Location::fromObject($player->getPosition(), $player->getPosition()->getWorld(), $player->getLocation()->getYaw(), $player->getLocation()->getPitch()), new Skin("Standard_Custom", str_repeat("\x00", 8192), "", "geometry.humanoid.custom"));
 		$txt = "";
-        $array = $kill;
+        $array = [];
+	foreach(EntityDamageByEntityEvent::getInstance()->getFinalDamage() as $damagerSession => $kill){
+		$array[mb_strtolower($damagerSession)] = $kill;
+	}
+	arsort($array);
+	$array = array_slice($array, 0, $slot);
 	$top = 1;
         foreach($array as $name => $kill) {
             $txt .= str_replace(["{line}", "{name}", "{player}", "{display_name}", "{top}", "{kills}"], ["\n", $name, $name, $name, $top, $kill], strval($this->getConfig()->getAll()["leaderboard"]["format"]));
